@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp mời tốt nghiệp của Quang Duy</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url('https://media.kenhtuyensinh.vn/images/cms/2022/12/1920x1080hoc-phi-dai-hoc-van-lang-2022-2023.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+        .logo {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            width: 300px;
+            z-index: 2;
+        }
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 420px;
+            background: rgba(255,255,255,0.9);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+        .card h1 {
+            color: #b71c1c;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .details {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        .card button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #b71c1c;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .card button:hover {
+            background: #8b0000;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Hoa giấy */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f1c40f;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Logo_VLU_2022.png" alt="Logo Văn Lang">
+    <div class="card">
+        <h1>Thiệp Mời Tốt Nghiệp</h1>
+        <p>Kính mời anh chị đến dự lễ tốt nghiệp của <strong>Huỳnh Quang Duy</strong></p>
+        <div class="details">
+            <p><b>Thời gian:</b> 13h00, ngày 14/08/2025</p>
+            <p><b>Địa điểm:</b> Sảnh Hội trường Trịnh Công Sơn Cơ sở 3, Đại học Văn Lang</p>
+        </div>
+        <button onclick="alert('Hẹn gặp anh chị tại buổi lễ nhé!')">Xác nhận tham dự</button>
+        <br><br>
+    </div>
+
+    <script>
+        // Tạo hoa giấy rơi
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            confetti.style.opacity = Math.random();
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            document.body.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+        setInterval(createConfetti, 200);
+
+        // Hàm chia sẻ link
+        function shareLink() {
+            const link = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Thiệp mời tốt nghiệp Văn Lang',
+                    text: 'Mời anh chị đến dự lễ tốt nghiệp của em!',
+                    url: link
+                });
+            } else {
+                navigator.clipboard.writeText(link).then(() => {
+                    alert("Link đã được copy! Gửi cho bạn bè nhé!");
+                });
+            }
+        }
+    </script>
+</body>
+</html>
